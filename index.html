@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MorphCraft：SVG 路径形变动画实验工具">
+  <title>MorphCraft · 形变工坊</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><span>M</span>MORPHCRAFT</div>
+    <p>SVG MOTION TOOL / OPEN SOURCE</p>
+  </header>
+
+  <main>
+    <section class="canvas-panel">
+      <div class="grid-bg">
+        <svg id="artboard" viewBox="0 0 600 600" role="img" aria-label="SVG 形变预览">
+          <path id="morph-shape" d="M38.01,5.653h526.531c17.905,0,32.422,14.516,32.422,32.422v526.531c0,17.905-14.517,32.422-32.422,32.422H38.01c-17.906,0-32.422-14.517-32.422-32.422V38.075C5.588,20.169,20.104,5.653,38.01,5.653z" />
+          <path id="source-shape" visibility="hidden" />
+          <path id="target-shape" visibility="hidden" />
+        </svg>
+      </div>
+      <div class="canvas-meta">
+        <span>600 × 600</span>
+        <span id="state-label">READY</span>
+      </div>
+    </section>
+
+    <aside class="controls">
+      <div>
+        <p class="eyebrow">PATH TO PATH</p>
+        <h1>形变控制台</h1>
+      </div>
+
+      <div class="preset-row">
+        <button class="preset active" data-preset="square-star">方形 → 星形</button>
+        <button class="preset" data-preset="circle-drop">圆形 → 水滴</button>
+        <button class="preset" data-preset="diamond-heart">菱形 → 心形</button>
+      </div>
+
+      <label>
+        <span>起始 SVG Path</span>
+        <textarea id="source-input" rows="4" spellcheck="false"></textarea>
+      </label>
+      <label>
+        <span>目标 SVG Path</span>
+        <textarea id="target-input" rows="4" spellcheck="false"></textarea>
+      </label>
+
+      <div class="inline">
+        <label>
+          <span>颜色</span>
+          <input id="color-input" type="color" value="#ff5b35">
+        </label>
+        <label>
+          <span>时长 <output id="duration-output">1200 ms</output></span>
+          <input id="duration-input" type="range" min="300" max="4000" step="100" value="1200">
+        </label>
+      </div>
+
+      <label>
+        <span>缓动</span>
+        <select id="easing-input">
+          <option value="easingCubicInOut">Cubic In Out</option>
+          <option value="easingBackOut">Back Out</option>
+          <option value="easingElasticOut">Elastic Out</option>
+          <option value="easingQuadraticInOut">Quadratic In Out</option>
+        </select>
+      </label>
+
+      <label class="check"><input id="yoyo-input" type="checkbox" checked><span>完成后反向返回</span></label>
+
+      <div class="actions">
+        <button id="play-button" class="primary">播放形变</button>
+        <button id="apply-button">应用路径</button>
+        <button id="export-button">导出 SVG</button>
+      </div>
+      <p id="status" role="status">选择预设或粘贴两段 SVG path 数据。</p>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.6/dist/kute.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
