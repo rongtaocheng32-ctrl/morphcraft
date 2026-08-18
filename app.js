@@ -58,6 +58,12 @@ document.querySelectorAll('.preset').forEach(button => {
 
 document.querySelector('#apply-button').addEventListener('click', applyPaths);
 
+document.querySelector('#swap-button').addEventListener('click', () => {
+  [sourceInput.value, targetInput.value] = [targetInput.value, sourceInput.value];
+  document.querySelectorAll('.preset').forEach(button => button.classList.remove('active'));
+  if (applyPaths()) status.textContent = '起始与目标路径已交换。';
+});
+
 document.querySelector('#play-button').addEventListener('click', () => {
   if (!applyPaths()) return;
   const yoyo = document.querySelector('#yoyo-input').checked;
